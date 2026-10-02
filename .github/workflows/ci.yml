@@ -30,5 +30,12 @@ jobs:
           python-version: '3.12'
       - run: python -m pip install -r requirements.txt
       - run: python build.py
+      - name: Guardar o site
+        uses: actions/upload-artifact@v4
+        with:
+          name: site
+          path: dist/
+          if-no-files-found: error
+          retention-days: 7
       - name: Conferir o arquivo gerado
         run: test -s dist/index.html
